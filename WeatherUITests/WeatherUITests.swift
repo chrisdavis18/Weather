@@ -28,9 +28,25 @@ class WeatherUITests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testTableViewOnLoad() {
+        
+        // Test Before Search
+        let app = XCUIApplication()
+        let tableView = app.tables["weatherTableView"]
+        XCTAssertTrue(tableView.cells.count == 0)
+        
     }
     
+    func testSearchBarSearch() {
+        
+        // Add Text Into SearchBar
+        let app = XCUIApplication()
+        let searchBar = app.searchFields.element(boundBy: 0)
+        searchBar.tap()
+        searchBar.typeText("Baltimore")
+        
+        XCTAssertTrue(searchBar.value as! String == "Baltimore")
+        
+        
+    }
 }
